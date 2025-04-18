@@ -35,6 +35,10 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.MapFallbackToFile("index.html"); 
+
 app.UseCors("AllowLocalhost5173"); // Använder CORS-policyn.
 app.UseSession(); // Aktiverar sessionshantering.
 

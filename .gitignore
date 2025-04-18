@@ -507,3 +507,4 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sw?
+/docs

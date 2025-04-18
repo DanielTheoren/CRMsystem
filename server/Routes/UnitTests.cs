@@ -34,19 +34,19 @@ NpgsqlDataSource db = NpgsqlDataSource.Create("Host=localhost;Database=dissatisf
     public async Task CreateACompany()
     {
         // Given
-        CompanyDTO company = new(30, "Danthe's", "010-5544662", "info@danthes.se", 2);
+        CompanyDTO company = new(30, "Danthe's", "010-5544662", "info@danthes.se", 3);
         // When
         var result = await CompanyRoutes.PostCompany(company, db);
         var typedResult = result.Result;
         // Then
-        //Assert.IsType<Created>(typedResult);
+        Assert.IsType<Created>(typedResult);
     }
 
     [Fact]
     public void UpdateCompany()
     {
         // Given
-        CompanyDTO company = new(30, "Danthe's", "010-5544662", "info@danthes.se", 2);
+        CompanyDTO company = new(30, "Danthe's shop", "010-5544662", "info@danthes.se", 3);
         // When
         var result =  CompanyRoutes.PutCompany(company, db);
         var typedResult = result.Result;
@@ -100,33 +100,33 @@ NpgsqlDataSource db = NpgsqlDataSource.Create("Host=localhost;Database=dissatisf
         PostUserDTO user = new("Daniel Theoren", "daniel@exempel.se", "pass123", "070-3322114");
         PasswordHasher<string> hasher = new PasswordHasher<string>();
         // When
-        var result = await UserRoutes.PostUser(user, db,hasher);
+        var result = await UserRoutes.PostUser(user, db, hasher);
         var typedResult = result.Result;
         // Then
-       // Assert.IsType<Created<string>>(typedResult);
+        Assert.IsType<Created<string>>(typedResult);
     }
 
     [Fact]
     public void UpdateUser()
     {
         // Given
-        Users user = new(7, "Daniel Theoren", "daniel@exempel.se", "pass123", "070-3322114", 3,4);
+        Users user = new(3, "Danne Theoren", "danne@exempel.se", "pass123", "070-3322114", 3,4);
         PasswordHasher<string> hasher = new PasswordHasher<string>();
         // When
         var result = UserRoutes.PutUsers(user, db, hasher);
         var typedResult = result.Result;
         // Then
-       // Assert.IsType<Ok<string>>(typedResult);
+        Assert.IsType<Ok<string>>(typedResult);
     }
 
     [Fact]
     public async Task DeleteAnUser()
     {
         // When
-        var result = await UserRoutes.DeleteUser(2, db);
+        var result = await UserRoutes.DeleteUser(26, db);
         var typedResult = result.Result;
         // Then
-        //Assert.IsType<NoContent>(typedResult);
+        Assert.IsType<NoContent>(typedResult);
     }
     #endregion
 
@@ -216,7 +216,8 @@ NpgsqlDataSource db = NpgsqlDataSource.Create("Host=localhost;Database=dissatisf
         var result = await FeedbackRoutes.PostFeedback(feedback, db);
         var typedResult = result.Result;
         // Then
-       // Assert.IsType<Created>(typedResult);
+        Assert.IsType<Created>(typedResult);
 
     }
+
 }
